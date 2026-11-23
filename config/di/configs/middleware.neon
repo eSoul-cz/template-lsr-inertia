@@ -1,0 +1,3 @@
+services:
+	# Referenced by the `csrf` middleware group in routes/01-middleware.php
+	middleware.web.csrf: App\Http\Middleware\BrowserCsrfMiddleware

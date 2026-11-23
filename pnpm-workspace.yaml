@@ -1,0 +1,27 @@
+# pnpm 12 reads only auth, registry, TLS, proxy and `local-address` settings from `.npmrc`; every other project setting lives in this file.
+# Hoisted to the root node_modules so that tools and editors resolve `@inertiajs/core` (a dependency of @inertiajs/vue3).
+publicHoistPattern:
+    - '@inertiajs/core'
+# Dependencies whose install scripts may run; any other package with one fails the install
+# (`ERR_PNPM_IGNORED_BUILDS`) until it is listed here (`pnpm approve-builds`).
+allowBuilds:
+    '@parcel/watcher': true
+    '@tailwindcss/oxide': true
+    esbuild: true
+    vue-demi: true
+# Supply chain: pnpm only takes package versions that are at least one day old (value in minutes).
+# An urgent security fix can bypass it with `minimumReleaseAgeExclude: ['<package>@<version>']`, with a comment that names the reason.
+minimumReleaseAge: 1440
+# `pnpm audit` runs in CI. An advisory that cannot be fixed yet is listed here, one entry per advisory, with a comment that
+# states the reason and the date it is reviewed again.
+auditConfig:
+    ignoreGhsas:
+        # Denial of service on malformed percent-encoded input in decode-uri-component. Dev only (Vite's optional stylus peer ->
+        # css -> source-map-resolve): the build never decodes untrusted input, nothing reaches the production image. Review 2026-12-23.
+        - GHSA-vcc3-ghjq-m6fr
+        - GHSA-qr28-fpjm-wq7f
+        # zod, glob and minimatch inside the shadcn-vue CLI (dev only, run by hand when a component is added; no fix without a
+        # shadcn-vue release that updates them). Review 2026-12-23.
+        - GHSA-mrhx-c7xc-m3w5
+        - GHSA-3g3m-2fjr-6pw4
+        - GHSA-g3hv-75wg-m249

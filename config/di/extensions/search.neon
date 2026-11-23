@@ -1,0 +1,16 @@
+extensions:
+	search: Nette\DI\Extensions\SearchExtension(%constants.tempDir%)
+search:
+	controllers:
+		in: '%constants.appDir%src/Http/Controllers'
+		extends:
+			- Lsr\Core\Controllers\Controller
+			- Lsr\Core\Controllers\ApiController
+		tags:
+			- controllers
+	commands:
+		in: '%constants.appDir%src/Console/Commands'
+		extends:
+			- Symfony\Component\Console\Command\Command
+		tags:
+			- console.command

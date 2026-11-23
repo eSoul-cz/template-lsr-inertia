@@ -1,0 +1,8 @@
+{
+    "layers": [
+        "general",
+        "framework/lsr",
+        "package/inertia-vue",
+        "package/mutation-testing"
+    ]
+}

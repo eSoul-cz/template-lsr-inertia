@@ -1,0 +1,62 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+      target: development
+    restart: unless-stopped
+    init: true
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      APP_NAME: ${APP_NAME:-LSR app}
+      APP_DEBUG: "true"
+      NODE_ENV: development
+      DB_HOST: db
+      DB_PORT: "3306"
+      DB_NAME: app
+      DB_USER: root
+      DB_PASSWORD: ${DB_PASSWORD:-dev-db-password}
+      DB_COLLATE: utf8mb4
+      DB_DRIVER: pdo
+      DB_LAZY: "true"
+      RR_LOG_LEVEL: debug
+    volumes:
+      - ./:/app
+      - app-vendor:/app/vendor
+      - app-node-modules:/app/node_modules
+      - app-temp:/app/temp
+    logging:
+      driver: json-file
+      options:
+        max-size: "50m"
+  nginx:
+    image: nginx:alpine-slim
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "5173:5173"
+    volumes:
+      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - app
+  db:
+    image: mariadb:12.3
+    restart: unless-stopped
+    environment:
+      MARIADB_ROOT_PASSWORD: ${DB_PASSWORD:-dev-db-password}
+      MARIADB_DATABASE: app
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 2s
+      timeout: 5s
+      retries: 30
+      start_period: 10s
+    volumes:
+      - mariadb-data:/var/lib/mysql
+volumes:
+  app-vendor:
+  app-node-modules:
+  app-temp:
+  mariadb-data:

@@ -1,0 +1,9 @@
+includes:
+	- services-common.neon
+routing:
+	cache:
+		checkTimestamps: true
+services:
+	templating.latte.engine:
+		setup:
+			- setAutoRefresh(true)

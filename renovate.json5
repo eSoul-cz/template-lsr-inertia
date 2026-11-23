@@ -1,0 +1,15 @@
+{
+  $schema: 'https://docs.renovatebot.com/renovate-schema.json',
+  extends: ['config:recommended', ':dependencyDashboard'],
+  timezone: 'Europe/Prague',
+  // Batch update PRs once a week.
+  schedule: ['* 0-5 * * 1'],
+  packageRules: [
+    {
+      // Patch and minor bumps of dev tooling land together.
+      matchDepTypes: ['devDependencies', 'require-dev'],
+      matchUpdateTypes: ['minor', 'patch'],
+      groupName: 'dev tooling',
+    },
+  ],
+}

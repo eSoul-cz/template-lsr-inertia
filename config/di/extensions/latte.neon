@@ -1,0 +1,6 @@
+services:
+	templating.latte.assets: Nette\Bridges\AssetsLatte\LatteExtension
+	templating.latte.engine:
+		setup:
+			- setAutoRefresh(true)
+			- addExtension(@templating.latte.assets)

@@ -1,0 +1,4 @@
+extensions:
+	lsr.console: Lsr\Console\Di\ConsoleExtension
+lsr.console:
+	name: 'eSoul App'

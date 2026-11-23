@@ -1,0 +1,5 @@
+extensions:
+	scheduler: Lsr\Scheduler\Di\SchedulerExtension
+scheduler:
+	# Commands schedule themselves with #[AsCronTask] / #[AsPeriodicTask]; the `scheduler` RoadRunner service runs `scheduler:run`.
+	processOnlyLastMissedRun: true

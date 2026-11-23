@@ -1,0 +1,17 @@
+{varType Lsr\Core\Controllers\Controller $page}
+
+<!DOCTYPE html>
+<html lang="{$page->app->translations->getLangId()}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{$page->getTitle()}</title>
+    {asset 'assets/css/tailwind.css'}
+</head>
+<body>
+    {block content}
+    {/block}
+
+    <script n:asset="assets/js/app.ts" type="module"></script>
+</body>
+</html>

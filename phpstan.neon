@@ -1,0 +1,11 @@
+includes:
+	- phar://phpstan.phar/conf/bleedingEdge.neon
+parameters:
+	editorUrl: 'phpstorm://open?file=%%file%%&line=%%line%%'
+	level: 10
+	paths:
+		- src
+		- include
+		- routes
+		- config
+	tmpDir: temp/tools/phpstan

@@ -1,0 +1,3 @@
+extensions:
+	request: Lsr\Core\Requests\DI\RequestExtension
+request:

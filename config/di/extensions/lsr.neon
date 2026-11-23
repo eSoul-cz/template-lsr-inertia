@@ -1,0 +1,16 @@
+extensions:
+	lsr: Lsr\Core\DI\LsrExtension
+lsr:
+	appDir: %constants.appDir%
+	tempDir: %constants.tempDir%
+	logger: @logging.loggers.app
+	latte:
+		tempDir: %constants.tempDir%latte/
+services:
+	db.connection: Lsr\Db\Connection(config: %db%)
+	lsr.app: App\Core\App
+	requestValidationMapper: Lsr\Core\Requests\Validation\RequestValidationMapper
+	# The default setup calls init() while App is still being constructed (recursion); the RoadRunner worker and
+	# Session::get() start the file session lazily per request. Swap in a Redis session to share it between instances.
+	lsr.session:
+		setup!: []

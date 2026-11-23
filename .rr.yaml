@@ -1,0 +1,62 @@
+version: '3'
+status:
+    address: 0.0.0.0:2114
+server:
+    command: 'php psr-worker.php'
+    relay: pipes
+metrics:
+    address: 0.0.0.0:2112
+    collect:
+rpc:
+    listen: tcp://0.0.0.0:6001
+http:
+    address: 0.0.0.0:8001
+    access_logs: true
+    max_request_size: 10 # MiB; rejects oversized bodies before PHP parses the request
+    # FastCGI listener for the NGINX in front of the container (production and docker-compose.yml). The HTTP listener
+    # above stays for the container health check and the smoke test.
+    fcgi:
+        address: tcp://0.0.0.0:9000
+    middleware:
+        - http_metrics
+        - static
+    # Only the compiled Vite assets are public (see docker/prepare-runtime.sh); never the source tree.
+    static:
+        dir: /var/www/public
+        allow: ['.js', '.css', '.png', '.jpg', '.jpeg', '.gif', '.ico', '.svg', '.webp', '.avif', '.woff', '.woff2', '.ttf', '.eot']
+    pool:
+        num_workers: 5
+        max_jobs: 5
+        max_queue_size: 10
+        supervisor:
+            max_worker_memory: 512
+jobs:
+    num_pollers: 10
+    timeout: 120
+    pipeline_size: 1000
+    pool:
+        num_workers: 2
+        max_jobs: 5
+        supervisor:
+            max_worker_memory: 512
+    consume: ['tasks']
+    pipelines:
+        tasks: # RoadRunner queue identifier, matches roadrunner.jobs.queue in config/di/extensions/roadrunner.neon
+            driver: boltdb
+            config:
+                # Durable queue file in the persistent `./temp` mount (docker/prepare-runtime.sh creates the directory).
+                # `cache:clean` and the other cache commands never touch `temp/queue/`; do not delete it with the caches.
+                file: /app/temp/queue/tasks.db
+                permissions: 0600
+                priority: 10
+                prefetch: 10
+service:
+    scheduler:
+        command: 'php bin/console scheduler:run'
+        process_num: 1
+        remain_after_exit: true
+        restart_sec: 5
+logs:
+    encoding: console
+    level: '${RR_LOG_LEVEL:-info}'
+    mode: production

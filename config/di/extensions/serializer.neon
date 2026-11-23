@@ -1,0 +1,5 @@
+extensions:
+	serializer: Lsr\Serializer\DI\SerializerExtensions
+serializer:
+	extraExtractors:
+		- Symfony\Component\PropertyInfo\Extractor\PhpStanExtractor

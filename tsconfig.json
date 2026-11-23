@@ -1,0 +1,37 @@
+{
+    "compilerOptions": {
+        "plugins": [
+            {
+                "name": "@vue/typescript-plugin",
+                "languages": ["vue"]
+            }
+        ],
+        "target": "ESNext",
+        "ignoreDeprecations": "6.0",
+        "useDefineForClassFields": true,
+        "lib": ["ESNext", "DOM", "DOM.Iterable"],
+        "jsx": "preserve",
+        "jsxImportSource": "vue",
+        "module": "ESNext",
+        "moduleResolution": "bundler",
+        "baseUrl": ".",
+        "paths": {
+            "@/*": ["./assets/js/*"]
+        },
+        "types": ["vite/client"],
+        "allowImportingTsExtensions": true,
+        "resolveJsonModule": true,
+        "allowJs": true,
+        "sourceMap": true,
+        "noEmit": true,
+        "isolatedModules": true,
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "strict": true,
+        "skipLibCheck": true
+    },
+    "include": ["assets/js/**/*.ts", "assets/js/**/*.d.ts", "assets/js/**/*.vue", "vite.config.ts", "vitest.config.ts"],
+    "vueCompilerOptions": {
+        "strictTemplates": false
+    }
+}

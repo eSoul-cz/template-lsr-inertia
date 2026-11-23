@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/13.4/phpunit.xsd"
+         bootstrap="tests/bootstrap.php"
+         colors="true"
+         cacheDirectory="temp/tools/phpunit"
+         executionOrder="defects"
+         resolveDependencies="true"
+         beStrictAboutOutputDuringTests="true"
+         failOnRisky="true"
+         failOnWarning="true">
+    <testsuites>
+        <testsuite name="Application">
+            <directory>tests</directory>
+        </testsuite>
+    </testsuites>
+    <groups>
+        <exclude>
+            <group>sandbox</group>
+            <group>quarantine</group>
+        </exclude>
+    </groups>
+    <extensions>
+        <!-- Fails the test on an http(s) stream request to anything but localhost (see tests/Support/Network). -->
+        <bootstrap class="Tests\Support\Network\NetworkGuardExtension"/>
+    </extensions>
+    <logging>
+        <!-- Per-test times for the shared pipeline (jenkins-libraries#8); the directory is gitignored. -->
+        <junit outputFile=".ci/junit/phpunit.xml"/>
+    </logging>
+    <source>
+        <include>
+            <directory suffix=".php">src</directory>
+        </include>
+    </source>
+    <php>
+        <env name="noDb" value="1"/>
+        <env name="APP_ENV" value="test"/>
+    </php>
+</phpunit>

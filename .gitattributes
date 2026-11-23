@@ -1,0 +1,18 @@
+* text=auto eol=lf
+
+*.blade.php diff=html
+*.css diff=css
+*.html diff=html
+*.md diff=markdown
+*.php diff=php
+
+# Client material and processed data live in assets/ via Git LFS.
+# Descriptions (Markdown) and scripts stay plain text files.
+assets/** filter=lfs diff=lfs merge=lfs -text
+assets/**/*.md !filter !diff !merge text diff=markdown
+assets/**/*.py !filter !diff !merge text
+
+# LSR keeps the Vite sources in assets/js and assets/css: code, not client material, so they stay out of Git LFS.
+# The rest of assets/ remains client material in LFS (the rule above); a later line wins.
+assets/js/** !filter !diff !merge text
+assets/css/** !filter !diff !merge text

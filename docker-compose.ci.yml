@@ -1,0 +1,48 @@
+# Smoke test of the production image: docker compose -f docker-compose.ci.yml --profile verification run --rm http-smoke
+services:
+  app:
+    image: ${APP_IMAGE:?APP_IMAGE must identify the production image under test}
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      APP_NAME: "LSR app CI"
+      DB_HOST: db
+      DB_PORT: "3306"
+      DB_NAME: app
+      DB_USER: app
+      DB_PASSWORD: ci-app-password
+      DB_COLLATE: utf8mb4
+      DB_DRIVER: pdo
+      DB_LAZY: "true"
+    # The check itself (`GET /up`) comes from the image HEALTHCHECK; only the timing is tightened for CI.
+    healthcheck:
+      interval: 3s
+      timeout: 5s
+      retries: 30
+      start_period: 30s
+  db:
+    image: mariadb:12.3
+    environment:
+      MARIADB_ROOT_PASSWORD: ci-root-password
+      MARIADB_DATABASE: app
+      MARIADB_USER: app
+      MARIADB_PASSWORD: ci-app-password
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 2s
+      timeout: 5s
+      retries: 30
+      start_period: 10s
+    tmpfs:
+      - /var/lib/mysql
+  http-smoke:
+    image: ${APP_IMAGE:?APP_IMAGE must identify the production image under test}
+    profiles: ["verification"]
+    entrypoint: ["php", "/usr/local/bin/http-smoke.php"]
+    environment:
+      HTTP_SMOKE_BASE_URL: http://app:8001
+      HTTP_SMOKE_FASTCGI_ADDRESS: tcp://app:9000
+    depends_on:
+      app:
+        condition: service_healthy

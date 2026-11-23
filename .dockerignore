@@ -1,0 +1,59 @@
+# Version control, editor, and agent state
+/.git/
+/.github/
+/.agents/
+/.claude/
+/.ai/
+/.idea/
+/.vscode/
+*.iml
+.DS_Store
+._*
+
+# Private and environment-specific configuration
+/.env*
+/auth.json
+/composer-auth.json
+/private/
+/config/di/*.local.neon
+*.key
+*.pem
+*.crt
+
+# Installed dependencies, generated assets, and runtime state
+/vendor/
+/node_modules/
+/.pnpm-store/
+/build/
+/dist/
+/coverage/
+/logs/
+/temp/
+/upload/
+/.cache/
+/.phpunit.cache/
+/.php-cs-fixer.cache
+*.log
+*.pid
+*.tsbuildinfo
+*.tgz
+
+# Development, CI, and documentation files
+/tests/
+/docs/
+/docker-compose*.yml
+/Jenkinsfile
+/phpunit.xml
+/phpstan*.neon
+/infection.json5
+/.php-cs-fixer.php
+/.dockerignore
+/.gitignore
+/*.md
+
+# Only the runtime entrypoints and the image-based HTTP verifier are build inputs.
+/docker/*
+!/docker/startDev.sh
+!/docker/startProd.sh
+!/docker/prepare-runtime.sh
+!/docker/http-smoke.php

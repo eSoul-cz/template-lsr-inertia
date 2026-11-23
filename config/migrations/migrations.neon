@@ -1,0 +1,14 @@
+# Database schema, applied by `php bin/console app:install`.
+# Add a table per Model class (key = FQCN) or table name, with `order`, `definition`, `modifications`, `indexes` and `foreignKeys`.
+tables:
+	# Key-value storage behind App\Core\Info; the installer keeps its table versions here.
+	page_info:
+		order: 0
+		definition: '''
+			(
+				`key` varchar(30) NOT NULL DEFAULT '',
+				`value` BLOB DEFAULT NULL,
+				PRIMARY KEY (`key`)
+			) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+			'''
+		modifications:

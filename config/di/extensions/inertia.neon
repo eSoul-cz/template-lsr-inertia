@@ -1,0 +1,7 @@
+extensions:
+	inertia: Lsr\Inertia\DI\InertiaExtension
+inertia:
+	rootId: app
+	# Client-side rendering only. SSR is an opt-in addon (ssr.enabled + a Node renderer service).
+	ssr:
+		enabled: false

@@ -1,0 +1,35 @@
+includes:
+	- extensions/search.neon
+	- extensions/roadrunner.neon
+	- extensions/console.neon
+	- extensions/scheduler.neon
+	- extensions/serializer.neon
+	- extensions/cache.neon
+	- extensions/orm.neon
+	- extensions/routing.neon
+	- extensions/assets.neon
+	- extensions/lsr.neon
+	- extensions/latte.neon
+	- extensions/request.neon
+	- extensions/inertia.neon
+	- configs/middleware.neon
+extensions:
+	decorator: Nette\DI\Extensions\DecoratorExtension
+	inject: Nette\DI\Extensions\InjectExtension
+	di: Nette\DI\Extensions\DIExtension
+
+di:
+	lazy: true
+
+decorator:
+	Lsr\Core\Controllers\Controller:
+		inject: true
+
+services:
+	# Used by GET /up (App\Http\Controllers\Health)
+	health.databaseCheck: App\Http\Health\ConnectionDatabaseCheck
+	# The only outgoing HTTP client (PSR-18). Declared with the interface as its type so a test can replace it with
+	# Tests\Support\Http\FakeHttpClient (tests/Support); code depends on Psr\Http\Client\ClientInterface.
+	http.client:
+		type: Psr\Http\Client\ClientInterface
+		create: App\Http\Client\CurlHttpClient

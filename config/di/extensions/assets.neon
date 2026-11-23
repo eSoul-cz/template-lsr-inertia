@@ -1,0 +1,12 @@
+extensions:
+	assets: Nette\Bridges\AssetsDI\DIExtension
+assets:
+	basePath: %constants.appDir%assets/
+	baseUrl: /
+	mapping:
+		images:
+			path: images
+		default:
+			type: vite
+			path: %constants.appDir%build/
+			url: /build/

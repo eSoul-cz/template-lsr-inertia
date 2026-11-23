@@ -1,0 +1,5 @@
+extensions:
+	cache: Lsr\Caching\DI\CacheExtension
+cache:
+	# File storage with an SQLite journal. Switch to Redis (Lsr\Caching\Redis\RedisStorage) when workers must share a cache.
+	cacheDir: %constants.tempDir%

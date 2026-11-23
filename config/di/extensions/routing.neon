@@ -1,0 +1,12 @@
+extensions:
+	routing: Lsr\Core\Routing\DI\RoutingExtension
+routing:
+	routeFiles:
+		- %constants.appDir%routes
+	controllers:
+		- %constants.appDir%src/Http/Controllers
+	cache:
+		file: %constants.tempDir%routes.php
+		autoCompile: true
+		checkTimestamps: %constants.debug%
+		commands: true

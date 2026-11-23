@@ -1,0 +1,11 @@
+extensions:
+	roadrunner: Lsr\Roadrunner\DI\RoadrunnerExtension
+roadrunner:
+	rpc:
+		host: 'tcp://localhost'
+		port: 6001
+	jobs:
+		queue: tasks
+		serializer: @roadrunner.tasks.serializer
+services:
+	roadrunner.tasks.serializer: Lsr\Roadrunner\Tasks\Serializers\IgBinaryTaskSerializer

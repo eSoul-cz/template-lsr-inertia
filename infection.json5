@@ -1,0 +1,20 @@
+{
+    "$schema": "vendor/infection/infection/resources/schema.json",
+    "source": {
+        "directories": ["src"]
+    },
+    // Not `build/`: that is the Vite output directory and is emptied by `pnpm build`.
+    "tmpDir": "temp/tools/infection/tmp",
+    "threads": "max",
+    "timeout": 60,
+    "logs": {
+        "text": "temp/tools/infection/infection.log",
+        "html": "temp/tools/infection/infection.html",
+        "summary": "temp/tools/infection/summary.log"
+    },
+    "mutators": {
+        "@default": true
+    },
+    // Only used when Infection runs the initial test suite itself (without --coverage).
+    "initialTestsPhpOptions": "-d xdebug.mode=coverage -d memory_limit=2G"
+}

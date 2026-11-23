@@ -1,0 +1,6 @@
+includes:
+	- services-common.neon
+services:
+	templating.latte.engine:
+		setup:
+			- setAutoRefresh(false)

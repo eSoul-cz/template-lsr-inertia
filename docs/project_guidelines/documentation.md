@@ -12,7 +12,7 @@ Putting knowledge in the wrong place is how a project ends up with three answers
 | [CONTEXT.md](../../CONTEXT.md) | Project conventions only: profile, tracker, tasking, commits, business time zone, locales, language per place, sources of truth | Domain terms, decisions, rules for code |
 | [GLOSSARY.md](../../GLOSSARY.md) | The domain language: term, definition, `_Avoid_` synonyms | Decisions, formulas, process |
 | `docs/adr/` | A decision with real alternatives and consequences, its status, why the alternatives lost, its implementation gaps | Vocabulary, day-to-day conventions |
-| `docs/plan/` | Work plans (slices, order, status) and a decision register for choices that are not ADR-worthy | Decisions with real alternatives and consequences (promoted to an ADR) |
+| `docs/plan/` | Work plans (slices, order, status) and a decision register for choices that are not ADR-worthy (a project MAY name another file as its decision register in `CONTEXT.md`, sources of truth) | Decisions with real alternatives and consequences (promoted to an ADR) |
 | `docs/project_guidelines/` | The code and work rules: layers, naming, validation, testing, review, workflow | Project-domain rules, decisions still open, schedules |
 | The project's tracker | Open questions: one issue or task labelled `question` per question | Answers (they go to an ADR, the glossary or a guideline), a question kept in a file |
 | `AGENTS.md` | Short engineering rules every agent loads, and a pointer to these guidelines | Detail that belongs in a guideline |

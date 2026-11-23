@@ -1,6 +1,6 @@
 {
     "schema_version": 1,
-    "package_version": "v0.3.2",
+    "package_version": "v0.3.4",
     "layers": [
         "general",
         "framework/lsr",
@@ -22,9 +22,9 @@
         },
         "docs/project_guidelines/code-review.md": {
             "block": "code-review",
-            "sha256": "9b48d3dd2073deaaa1a032ba180e40e3eda42048af8722ef5b31b84139b15c37",
+            "sha256": "7999bc7f564695d877dd5c4a23f1ddde34b09479a5d7b0763e73c18e8a86ca1b",
             "sources": {
-                "general/code-review.md": "23d9d99c4b3910df0a99e0e31b9a84b2091b9688a01c2462fd15c6f62e0e6b7d"
+                "general/code-review.md": "b62bc2a89cb5e421ab8aa361ace6359d390acd30f61b257d9ddc67c8d7aa7d56"
             }
         },
         "docs/project_guidelines/dependencies.md": {
@@ -44,16 +44,16 @@
         },
         "docs/project_guidelines/documentation.md": {
             "block": "documentation",
-            "sha256": "d12fe20b533654006559513de648eb7d4d70583836dfcb2c4cf0f15979d34fc3",
+            "sha256": "704d6286dbcb2f8b1b7203c67cec6aa0c0bde7c17f96923ee821eb44e8bac1aa",
             "sources": {
-                "general/documentation.md": "56da7cbb2b3c96beea9c6e281ba0ffb535dad1ab391ded765d341f1b5b2aa54d"
+                "general/documentation.md": "4748f9bca548a69d8c4e3cc0150160fe76aebaf0c7212ee2b095f8ed00083a50"
             }
         },
         "docs/project_guidelines/domain.md": {
             "block": "domain",
-            "sha256": "9499d281a2de7581cf357958cd842a43c504faa1702e7bfb2f377af6a3c0e9ac",
+            "sha256": "4ddc59d5b3aaab075bb86e653722dd1c900706ff8994e14fe7aa22a8cc10ef93",
             "sources": {
-                "general/domain.md": "ac236f06b5c14a7ff0eb663612409258ec174cd17af12a3721c23a034d088dc5"
+                "general/domain.md": "bb56a67c92fa62ac373974313f842aaf91c394b4ea5bc24b44c1e87fd6a63e9f"
             }
         },
         "docs/project_guidelines/frontend.md": {
@@ -77,9 +77,9 @@
         },
         "docs/project_guidelines/security-and-data.md": {
             "block": "security-and-data",
-            "sha256": "5c5e199a3a37efadaaae46fa33058367b81ff2be81d47cf4c7e28eb6f636613a",
+            "sha256": "d9ad76bd229196158b18303583fc3f358391b390394b777ef80766b58b09b788",
             "sources": {
-                "general/security-and-data.md": "02068d639ce4538f9bbfda6b659d0c6fb2d5b38ab78079e43e5a7e6d752cdc23"
+                "general/security-and-data.md": "08c938cbe9006bc1204b0fd9b06a4c4ff912e09849ba28392695360025d696c3"
             }
         },
         "docs/project_guidelines/testing.md": {
@@ -101,9 +101,9 @@
         },
         "docs/project_guidelines/workflow.md": {
             "block": "workflow",
-            "sha256": "7cfbd728f79dc781412b32fc43597d5bea335d88fa72e6cdbdfc0e886a985f37",
+            "sha256": "6e185ce2085479244a32db66156abc059f34d31abab9b554b3fe4f7e3d2a9d95",
             "sources": {
-                "general/workflow.md": "e280f228ae461f03802d99758dfd5c9ed1873552548979fb10020f2af8350ce0"
+                "general/workflow.md": "e016a9aab1d0120ab4276e87314d1fd5828463278e0111b9f8497d6fefd23584"
             }
         }
     }

@@ -6,8 +6,8 @@ Reviews happen in pull request threads. This document defines the shared vocabul
 ## Who reviews
 
 - Every pull request is reviewed twice: by **CodeRabbit** and by at least **one human** with write access. CodeRabbit review is configured at the platform level; the repository's `.coderabbit.yaml` only excludes generated paths. A CodeRabbit approval never replaces the human review.
-- The author finishes the pull request with the `final-pr-review` skill: green `Jenkins` check, every CodeRabbit finding answered, local review run where the skill asks for it.
-- When CodeRabbit hits its rate limit or runs out of credits, nobody waits for it: the `pre-pr-review` skill posts a fallback review of the same revision into the pull request, and its findings are answered the same way. Once they are resolved, its review (a `COMMENT`, not a GitHub approval) stands in for CodeRabbit's. It does not replace the human review.
+- The author finishes the pull request with the `esoul-review` skill: green `Jenkins` check, every CodeRabbit finding answered, local review run where the skill asks for it.
+- When CodeRabbit hits its rate limit or runs out of credits, nobody waits for it: the `esoul-review` skill posts a fallback review of the same revision into the pull request, and its findings are answered the same way. Once they are resolved, its review (a `COMMENT`, not a GitHub approval) stands in for CodeRabbit's. It does not replace the human review.
 - The author merges under the rules in [workflow.md](workflow.md#pull-requests): one approval and a green `Jenkins` check. Agents MUST NOT merge, approve or use a ruleset bypass unless the human owner explicitly authorises it for that pull request or batch; the authorisation, and the reason for a bypass, go in the pull request description.
 - When review finds defects, the task moves back to `In progress`; review time is logged as a work report.
 

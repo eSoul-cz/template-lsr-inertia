@@ -8,7 +8,7 @@ The glossary and the `accepted` ADRs define the target domain contract; the code
 For domain work, read the sources in this order. A higher source wins over a lower one:
 
 1. [GLOSSARY.md](../../GLOSSARY.md) - the mandatory domain vocabulary - and [CONTEXT.md](../../CONTEXT.md) - the project conventions, which hold no domain terms.
-2. `docs/adr/` - the decisions that touch the area, following every supersession link - and the decision register of the plan (`docs/plan/`), which ranks with the ADRs as a recorded decision.
+2. `docs/adr/` - the decisions that touch the area, following every supersession link - and the decision register of the plan (`docs/plan/`), which ranks with the ADRs as a recorded decision. A project whose decision register is another file (for example `docs/rozhodnuti.md`) names it in `CONTEXT.md` under its sources of truth, and that file ranks the same way.
 3. [AGENTS.md](../../AGENTS.md) and these guidelines - the engineering rules, including where the code does not follow them yet.
 4. The design, where the project has one. It wins over design tokens and over any summary of it.
 5. The plan's slices and schedule, and the issue - scope and acceptance criteria.

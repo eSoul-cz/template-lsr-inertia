@@ -6,8 +6,9 @@ How a change travels from a prepared issue to a merged pull request. The tasking
 ## Tasking
 
 - Every change starts from a prepared issue (or task) with a clear outcome and **acceptance criteria**. Work without one is first turned into one; an agent does not start from a vague request.
+- The exception is small administrative work (dependency updates, a `Jenkinsfile` change and similar), which MAY go without an issue or task, but only when the user decides so. An agent never assumes the exception: it asks the user unless an issue or task already exists. Internal repositories relax the whole rule in their profile.
 - One issue is one independently deliverable result. When separate work emerges during a task, open another issue instead of widening the current one.
-- The title names the result: a context followed by an action. The issue, its tracker task and its pull request carry the same title; the pull request title wraps it in the commit format ([Pull requests](#pull-requests)).
+- The title names the result: a context followed by an action. In a new project the issue, its tracker task and its pull request carry the same English title (descriptions and Freelo text MAY stay Czech); the pull request title wraps it in the commit format ([Pull requests](#pull-requests)). A project whose history and tracker titles are Czech keeps its Czech tracker titles; its pull request title is an English commit-style title of the same result that links the issue.
 - Titles carry **no prefix** such as `[BE]` or `[FE]`, and never a slice or phase identifier. The work category is a label on the issue (GitHub) and on the task (Freelo).
 - Work blocked by an open dependency, an open question or a `proposed` ADR is not ready to start ([domain.md](domain.md#open-points-and-conflicts)).
 - Use the `esoul-tasking` skill to create issues and tasks; it previews the result and asks for approval before writing.
@@ -51,11 +52,11 @@ How a change travels from a prepared issue to a merged pull request. The tasking
 
 - Open the pull request when the work meets the Definition of Done; keep work in progress as a draft.
 - Keep pull requests **small and focused**: one issue, no unrelated refactoring mixed with a feature. A pull request changing more than roughly 30 files is split (mechanical changes in their own commit, such as formatter output, generated files and lock files, do not count); when that is impossible, its description says how to review it in parts. Review findings are never tracked in a repository file instead ([code-review.md](code-review.md#findings-stay-in-the-pull-request)).
-- The pull request title follows the commit format (`:emoji: [optional-context] Message`) because it becomes the squash commit; the message part is the title shared with the issue and the task.
+- The pull request title follows the commit format (`:emoji: [optional-context] Message`) because it becomes the squash commit; the message part is the title shared with the issue and the task (English; in a project with Czech tracker titles an English title of the same result, see [Tasking](#tasking)).
 - Set at least one other person as **Reviewer** and every contributor as **Assignee**.
 - Fill in the repository's pull request template. It links the issue (`Closes #<issue>`), lists every check you ran with its result ([testing.md](testing.md#testing-workflow)) and the `No test:` line where it applies, lists decisions you made on your own so the reviewer can confirm them, and carries a **Deploy notes** line naming what devops must do before the deploy: new or changed configuration variables, secrets, buckets, a migration that needs a backup first, or `none` ([deployment.md](deployment.md#configuration-and-secrets)).
 - A pull request SHOULD include the documentation, changelog and glossary updates its change requires; a separate pull request, preferably stacked on the change, is allowed. A change to the architecture or to an external contract comes with its ADR in the same pull request ([documentation.md](documentation.md#documentation-rides-with-the-change)).
-- Reviews follow [code-review.md](code-review.md): CodeRabbit and a human review, every finding answered, and the `final-pr-review` skill to finish the pull request.
+- Reviews follow [code-review.md](code-review.md): CodeRabbit and a human review, every finding answered, and the `esoul-review` skill to finish the pull request.
 - A green `Jenkins` check is required before merge.
 - **The author merges**, as a human, after one approval and a green build, with a **squash merge** whose message is the pull request title. Agents MUST NOT merge, approve or use a ruleset bypass unless the human owner explicitly authorises it for that pull request or batch; the authorisation is recorded in the pull request description ([code-review.md](code-review.md#who-reviews)).
 

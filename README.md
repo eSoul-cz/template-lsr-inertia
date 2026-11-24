@@ -2,6 +2,13 @@
 
 Application on the LSR framework with RoadRunner, Latte, Inertia 3 (Vue 3), Vite 8 and Tailwind 4. This file is the operations README: how to run it, which ports and paths it uses and how to check it. Rules and decisions are in `docs/project_guidelines/` and `CONTEXT.md`.
 
+## Getting started
+
+1. Clone: `git clone git@github.com:eSoul-cz/<repository>.git`.
+2. Agent skills: `npx skills experimental_install` restores the set pinned in `skills-lock.json`. Optional personal layers (installed once per user, not part of the project): `npx @esoul-cz/skills install project helpers`; `npx @esoul-cz/skills layers` lists them.
+3. Local environment: [Setup](#setup) (`docker compose up --build`).
+4. Access, asked from the project lead or devops: the Freelo project (`CONTEXT.md` › Freelo), the Jenkins job (its `Jenkins` check runs on every pull request) and the project's vault in 1Password (secrets and staging logins live there, never in Git). Then read `AGENTS.md` and `CONTEXT.md`.
+
 ## Requirements
 
 - Docker with Compose v2: the development stack runs the application, NGINX and MariaDB.

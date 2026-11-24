@@ -17,3 +17,4 @@ config/di/services.local.neon
 *.iml
 .DS_Store
 /.ci/
+/_reference/

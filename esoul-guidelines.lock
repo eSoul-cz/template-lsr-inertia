@@ -1,6 +1,6 @@
 {
     "schema_version": 1,
-    "package_version": "v0.4.0",
+    "package_version": "v0.5.0",
     "layers": [
         "general",
         "framework/lsr",
@@ -29,31 +29,31 @@
         },
         "docs/project_guidelines/dependencies.md": {
             "block": "dependencies",
-            "sha256": "2d37c9dd6c0b515a04f99b3f045610113d1157ab9e80a4686bd757546e70cf64",
+            "sha256": "a1d687561bc1640e3d7ca8f91afc64adfa3b861fae9018439ff51b11828c996c",
             "sources": {
-                "general/dependencies.md": "f6f260f75b71e1dafe8e712e61b1b9cf75f9ae7c0c3eb984f44b9a8d1eae8ee2"
+                "general/dependencies.md": "dcac284b018e572c2d683117adc48e94160f449c57a71c7263e36127870a95b4"
             }
         },
         "docs/project_guidelines/deployment.md": {
             "block": "deployment",
-            "sha256": "b3f63f331c94c123fc90880ce8b754d448d657589595eaf726b0928089074220",
+            "sha256": "531f420eaa72f4f4e455d3c358e4175b97849020502fc326799b35f4d1dbc76e",
             "sources": {
-                "general/deployment.md": "2f3cbfcdb399e27e006a692a6656d04c0cdcc8ba6429032b53b0f46bcc09cc28",
-                "framework/lsr/deployment.md": "50b7e858c6ce1d87c5d5f3ae0ef5996d6ada707e35924bd2d950f3913a25dddc"
+                "general/deployment.md": "e50fc968099f34e722aa8461dc1d9270a54e2e390ac2e05a54356985bad69572",
+                "framework/lsr/deployment.md": "19cfff487b291d61b57784bb054ea94922f00c4b15148a36461af6bfb5846f88"
             }
         },
         "docs/project_guidelines/documentation.md": {
             "block": "documentation",
-            "sha256": "491c4e986dbdb4c832c05b710e6a21dda2c316b2c5caa1c4fc4187d213260e5f",
+            "sha256": "8a62c2043ed6a8ef33cbfecd6e532f5a5561d29b75e91780eaa0d72856764354",
             "sources": {
-                "general/documentation.md": "b327376cee5ebd55748710d5fb828cc12d85f15210a8e1837f5a817c32a12e67"
+                "general/documentation.md": "6747558c10e9ef02f9fe0126f8ffdba80958a87ddc49ea144b971823e4ee4c6a"
             }
         },
         "docs/project_guidelines/domain.md": {
             "block": "domain",
-            "sha256": "4ddc59d5b3aaab075bb86e653722dd1c900706ff8994e14fe7aa22a8cc10ef93",
+            "sha256": "5156415baba6eb3cd2c05102a78493df250168efe4f09d32b13411fd3090989a",
             "sources": {
-                "general/domain.md": "bb56a67c92fa62ac373974313f842aaf91c394b4ea5bc24b44c1e87fd6a63e9f"
+                "general/domain.md": "65930749b8463ad2f1934239a3c2a5debabe5fb3ddd5d3c655c886add1532a80"
             }
         },
         "docs/project_guidelines/frontend.md": {
@@ -93,17 +93,17 @@
         },
         "docs/project_guidelines/tools.md": {
             "block": "tools",
-            "sha256": "0782f04149d28524adb64b88375ede8ec88e87148a0be39114dfe78911bff77e",
+            "sha256": "445459cdd2dbfb8c99efb9d342e6a21c37330d3a9219564d362346bd9581e93f",
             "sources": {
-                "framework/lsr/tools.md": "87c9d9d661e544967fe9519191460d6ddbe133ba3926621c2b3c37cad2e5dc06",
+                "framework/lsr/tools.md": "8c513f38fc8e4dcddad51477343c25ec1ec11f4cc22302b84a648ba44ee122f6",
                 "package/mutation-testing/tools.md": "edca9fbe3c3b1b910f01124c354b664f848dfdc15ff7718807456460855fbe5a"
             }
         },
         "docs/project_guidelines/workflow.md": {
             "block": "workflow",
-            "sha256": "2dbb1df30bb9623b1825442a802ac1bf77985607570c7de5b2d2adf98267a9a0",
+            "sha256": "0e01076cddf7eb1b43f06693eab41f5dee7f1dc29715a77c804cf9b7f0f8e756",
             "sources": {
-                "general/workflow.md": "54c53960bb5541a61f27c8ef951315843251ad410ac0768f7bff3025d11f42b5"
+                "general/workflow.md": "d878d1aa775071a9f9d709fa10b53b699dc13fd0c1b55842d551cd8e445cf63d"
             }
         }
     }

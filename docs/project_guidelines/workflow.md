@@ -6,12 +6,12 @@ How a change travels from a prepared issue to a merged pull request. The tasking
 ## Tasking
 
 - Every change starts from a prepared issue (or task) with a clear outcome and **acceptance criteria**. Work without one is first turned into one; an agent does not start from a vague request.
-- The exception is small administrative work (dependency updates, a `Jenkinsfile` change and similar), which MAY go without an issue or task, but only when the user decides so. An agent never assumes the exception: it asks the user unless an issue or task already exists. Internal repositories relax the whole rule in their profile.
+- The exception is small administrative work (dependency updates, a `Jenkinsfile` change and similar), which MAY go without an issue or task, but only when the user decides so. An agent never assumes the exception: it asks the user unless an issue or task already exists. A project MAY record that decision once in `CONTEXT.md` › Tasking convention, naming the kinds of admin work that go without an issue (for example dependency updates and `Jenkinsfile` changes); an agent then follows the record instead of asking each time. Adding a stage or check to the push build is not small administrative work: it needs an ADR first ([deployment.md](deployment.md#how-an-application-reaches-production)). Internal repositories relax the whole rule in their profile.
 - One issue is one independently deliverable result. When separate work emerges during a task, open another issue instead of widening the current one.
-- The title names the result: a context followed by an action. In a new project the issue, its tracker task and its pull request carry the same English title (descriptions and Freelo text MAY stay Czech); the pull request title is that title in the project's commit standard, because it becomes the squash commit message ([Pull requests](#pull-requests)). A project whose history and tracker titles are Czech keeps its Czech tracker titles; its pull request title is an English, descriptive title of the same result that links the issue.
+- The title names the result in the shape `Context: Result`: the area or subject, a colon, then what the work achieves (for example `Cart: Recalculate shipping when the address changes`). In a new project the issue, its tracker task and its pull request carry the same result in English (descriptions and Freelo text MAY stay Czech); the pull request title is that same result in English, and how it is written into the author's commit standard is the [Pull requests](#pull-requests) rule. A project whose history and tracker titles are Czech keeps its Czech tracker titles; its pull request title is an English, descriptive title of the same result that links the issue.
 - Titles carry **no prefix** such as `[BE]` or `[FE]`, and never a slice or phase identifier. The work category is a label on the issue (GitHub) and on the task (Freelo).
 - Work blocked by an open dependency, an open question or a `proposed` ADR is not ready to start ([domain.md](domain.md#open-points-and-conflicts)).
-- Use the `esoul-tasking` skill to create issues and tasks; it previews the result and asks for approval before writing.
+- Use the `esoul-task-create` skill to create issues and tasks; it previews the result and asks for approval before writing.
 
 ## Branches
 
@@ -24,7 +24,7 @@ How a change travels from a prepared issue to a merged pull request. The tasking
 ## Commits
 
 - **Required.** A commit message is in English and describes what the commit does: a subject that says what changes (not `fix`, `update` or `wip`), and, when the reason is not obvious, a body after a blank line that explains reasoning or trade-offs, not the subject again.
-- **Commit standard.** A developer MAY use their own commit standard (their own prefix scheme, Conventional Commits and so on) as long as the message meets the requirement above. An agent writes commits in the standard of the developer it works for; when that developer has none, it uses the recommended format below. The project records a convention it settles on in [CONTEXT.md](../../CONTEXT.md).
+- **Commit standard.** A developer MAY use their own commit standard (their own prefix scheme, Conventional Commits and so on) as long as the message meets the requirement above. An agent writes commits in the standard of the developer it works for; when that developer has none, it uses the recommended format below. A convention recorded in [CONTEXT.md](../../CONTEXT.md) is a recommendation for the project's developers, never an override of the developer's own standard.
 - **Recommended format (Gitmoji).** `:emoji: [optional-context] imperative message`, optionally followed by a blank line and the body.
 
   ```text
@@ -54,7 +54,7 @@ How a change travels from a prepared issue to a merged pull request. The tasking
 
 - Open the pull request when the work meets the Definition of Done; keep work in progress as a draft.
 - Keep pull requests **small and focused**: one issue, no unrelated refactoring mixed with a feature. A pull request changing more than roughly 30 files is split (mechanical changes in their own commit, such as formatter output, generated files and lock files, do not count); when that is impossible, its description says how to review it in parts. Review findings are never tracked in a repository file instead ([code-review.md](code-review.md#findings-stay-in-the-pull-request)).
-- **The pull request title is the squash commit message**, so it is English and descriptive and follows the project's commit standard: in the recommended Gitmoji format `:emoji: [optional-context] Message` ([Commits](#commits)). The message part is the title shared with the issue and the task (in a project with Czech tracker titles an English title of the same result, see [Tasking](#tasking)).
+- **The pull request title is the squash commit message**, so it is English and descriptive and follows the author's commit standard (the recommended Gitmoji format `:emoji: [optional-context] Message` when the author has none, [Commits](#commits)). It states the same result as the title shared with the issue and the task (in a project with Czech tracker titles an English title of the same result, see [Tasking](#tasking)).
 - Set at least one other person as **Reviewer** and every contributor as **Assignee**.
 - Fill in the repository's pull request template. It links the issue (`Closes #<issue>`), lists every check you ran with its result ([testing.md](testing.md#testing-workflow)) and the `No test:` line where it applies, lists decisions you made on your own so the reviewer can confirm them, and carries a **Deploy notes** line naming what devops must do before the deploy: new or changed configuration variables, secrets, buckets, a migration that needs a backup first, or `none` ([deployment.md](deployment.md#configuration-and-secrets)).
 - A pull request SHOULD include the documentation, changelog and glossary updates its change requires; a separate pull request, preferably stacked on the change, is allowed. A change to the architecture or to an external contract comes with its ADR in the same pull request ([documentation.md](documentation.md#documentation-rides-with-the-change)).
@@ -77,6 +77,17 @@ How a change travels from a prepared issue to a merged pull request. The tasking
 - Name the **root cause** in one sentence before changing code (in the issue or the pull request description) and fix it where it lives, not where the symptom shows.
 - A workaround (an extra parameter passed around, a special case in the caller) is allowed only when the cause cannot be fixed in this change. The pull request says so and links a follow-up issue for the cause.
 - The regression test ([testing.md](testing.md#regression-tests)) fails on the cause, not only on the reported symptom.
+
+## Hotfix
+
+A hotfix is a fix for a defect that harms production now and cannot wait for the normal pace. It is [Fixing a bug](#fixing-a-bug) with the formalities shortened, never skipped.
+
+- **The issue is still created**, but it MAY be written after the fix is pushed, as long as it exists before the pull request is merged. The tracker task MAY skip `Backlog` and go straight to work without an estimate; the estimate and the work report are filled in afterwards.
+- **A hotfix gets the normal review, with priority.** Any available reviewer may review it, and the green `Jenkins` check still applies. Skipping the review or a failing check is a ruleset bypass, which only the owner decides, for that pull request, with the reason in its description ([code-review.md](code-review.md#who-reviews)).
+- **The dependency audit MAY be warn-only for the hotfix build**, so that a new advisory in an unrelated dependency does not block the deploy of the fix: the pipeline key `audit: [warnOnly: true]` (in `laravelPipeline` and `lsrPipeline`; as `checks: [audit: [warnOnly: true]]` in `astroPipeline`) makes a finding mark the build unstable instead of failing it. The key is set for the hotfix build only and removed again afterwards. The advisory becomes its own issue.
+- **Rollback is a redeploy of the previous image** (an earlier digest or Git tag, found as described in [Environments and releases](deployment.md#environments-and-releases)); only devops, or whoever has Komodo access, redeploy. When the fix is not ready, rolling back is the first option, not a patch under pressure.
+- **A follow-up issue records the root cause** whenever the hotfix is a workaround, and a regression test that fails on the cause ([Fixing a bug](#fixing-a-bug)) is added before that issue is closed. The pull request description says it is a hotfix.
+- **An incident note goes in the hotfix issue**: what happened, the impact, the fix and the follow-up. Whether the client is told is the project lead's call.
 
 > Local additions go below this managed block. Content outside the block is preserved when the guidelines are synced.
 <!-- esoul-guidelines:end workflow -->

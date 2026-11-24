@@ -22,6 +22,7 @@ This file lists the tools the project uses and how to run them.
 - New LSR applications start at PHPStan level 10. An existing application below it raises the level when it can, fixing findings in code; a baseline is not a way to get there.
 - Use API documentation and installed source that match the locked `lsr/*` versions and the PHPUnit major/minor, even when linked documentation is newer. Read the installed `vendor/lsr/*` source before concluding that a feature is unavailable.
 - When chaining a method on a newly instantiated class, write `new Foo()->bar()`; only the constructor call's parentheses are needed.
+- A project created from the template has no lock files until `composer install` and `pnpm install` have run once. Commit `composer.lock` and `pnpm-lock.yaml` before the first Docker build, which fails without them.
 
 <!-- from: package/mutation-testing -->
 Mutation testing adds this row:
@@ -74,6 +75,14 @@ pnpm tsc
 pnpm test
 pnpm build
 ```
+
+### Guidelines
+
+```bash
+vendor/bin/esoul-guidelines check  # drift of the rendered guidelines, the AGENTS.md block and the lock; never writes
+```
+
+CI runs it as the stage `Guidelines check` of the shared pipeline, from the project's own `vendor/` (see [deployment.md](deployment.md#delivery-path)); a failure is fixed with `esoul-guidelines sync` after the content was moved out of the managed block, not by editing the block.
 
 ## Formatting and lint autofixes
 

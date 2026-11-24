@@ -30,7 +30,8 @@ LSR runtime detail added to the deployment scheme: the RoadRunner image, the pip
 - A project starts with only the `main` branch, which is deployed during development to a **staging** environment. After the release `main` becomes **production**. A `staging` branch, deployed to the staging stack, MAY be added afterwards; it is project-specific and depends on the client's requirements (some clients do not pay for two deployments). The same lifecycle is in [workflow.md](workflow.md#branches).
 - Every environment has its own stack, database, Komodo variables, buckets and secrets. Staging that holds real data is protected like production. A development stack MAY exist; it is not a release environment and holds no production data.
 - The pipeline's deploy rules say which branch goes where, for example `main` to the staging stack before the release and to the production stack after it, and `staging` to the staging stack.
-- Production runs the image built from `main`, tagged `latest`. Only `main` pushes `latest`; a second deploy branch pushes its own tag (for example `staging`), so a stack that Komodo redeploys on every new `latest` never runs staging code. A rollback redeploys an earlier image by its digest or Git tag (or re-points a static site to the previous release). No release-tag step is required.
+- Production runs the image built from `main`, tagged `latest`. Only `main` pushes `latest`; a second deploy branch pushes its own tag (for example `staging`), so a stack that Komodo redeploys on every new `latest` never runs staging code. No release-tag step is required.
+- **Rollback.** Every build of a deploy branch moves `latest`, and the pipeline also pushes every Git tag that points at the built commit, so the previous release is the previous successful `main` build: its image is the registry tag of that commit's Git tag if it has one, otherwise the digest the registry lists for the push before the current one (the registry shows tags with their push dates; the build log does not print the digest). Devops, or whoever has Komodo access, redeploys it: set the stack's `image_tag` (or digest) to it and deploy the stack in Komodo. Do not rerun the old Jenkins build to roll back; it rebuilds the code and moves `latest` again. A static site is rolled back with `rollbackStaticSite`, which re-points `current` to the previous release without a build.
 - Migrations run once per deployment, forward-only, and are safe while the previous release still serves requests. Only one container per stack runs them.
 - **Target.** Some stacks are still redeployed by Komodo on every new `latest` image (auto-update); the pipeline deploys them instead once their stacks are managed.
 
@@ -147,15 +148,14 @@ The servers run a few shared services, each applied from the infrastructure repo
 The template `Jenkinsfile` loads the shared libraries `dockerHelpers`, `testing`, `deploy` and `pipelines` and calls `lsrPipeline` with:
 
 - a prepare command (`php bin/console list --no-interaction`);
-- PHP checks: `composer phpstan:ci` and `composer test:parallel`, with `temp/tools` mounted as the tool cache;
-- frontend checks: `pnpm run eslint --quiet` and `pnpm run format:check`;
-- a smoke check that starts the production image from `docker-compose.ci.yml` and runs the `http-smoke` service against it (optional, as in the scheme);
+- PHP checks: `composer phpstan:ci`, `composer cs`, `composer test:parallel` and `composer audit --locked` (any advisory fails), with `temp/tools` mounted as the tool cache;
+- frontend checks: `pnpm run eslint`, `pnpm run format:check`, `pnpm run tsc`, `pnpm run test`, `pnpm audit` (any advisory fails) and `pnpm run build`;
+- the `Guidelines check` stage: `esoul-guidelines check` from the project's own `vendor/` ([tools.md](tools.md#guidelines)); it runs when the project has `esoul-guidelines.lock`, and `guidelinesCheck: false` switches it off;
+- a smoke check that starts the production image from `docker-compose.ci.yml` and runs the `http-smoke` service against it (optional, as in the scheme; with `lsrPipeline` it also runs on pull requests, on the image of the test build);
 - the production-target image build from `docker/Dockerfile`;
 - deployment of the image to the project's Komodo stack by the project's deploy rules (`main` and `master` in the template; see [Environments and releases](#environments-and-releases)).
 
-**Target.** The template's checks stop short of the read-only set in [tools.md](tools.md#read-only-verification): `composer cs`, `pnpm tsc` and `pnpm test` are not run yet. The template adds them (V2 template item).
-
-`lsrPipeline` is **planned**: the shared `pipelines` library has `laravelPipeline` only, so the template `Jenkinsfile` does not run until `lsrPipeline` exists. Its parameters mirror `laravelPipeline` and the `smoke` key is a proposal. Until then a project composes the same steps from the shared `testing`, `dockerHelpers` and `deploy` libraries.
+The step, its stages and its parameters are documented in `pipelines/vars/lsrPipeline.txt` of the shared libraries repository (eSoul-cz/jenkins-libraries).
 
 - The `Jenkinsfile` stays a small, readable pipeline: check, build, publish and deploy only. Release certification, evidence capture and other orchestration do not belong in it.
 

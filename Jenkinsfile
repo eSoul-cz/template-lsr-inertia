@@ -7,6 +7,8 @@
 // Everything not set here is the default of the step, which is what this template provides (Composer scripts `phpstan:ci`, `cs`,
 // `test:parallel`; pnpm scripts `eslint`, `format:check`, `tsc`, `test`, `build`; `docker/Dockerfile` with a `production` target;
 // `docker-compose.ci.yml` with the `http-smoke` service).
+// `esoul-guidelines check` runs by itself (stage `Guidelines check`, from the project's own `vendor/`) because the project has an
+// `esoul-guidelines.lock`: nothing to configure here, and no `extraChecks` entry for it.
 //
 // Adopting the template: set `image` to the release image name of the application (lowercase letters, digits, `_`, `.`, `-`; it is
 // pushed to the `registry` namespace) and, to deploy after the release, add `stack: '<komodo stack>'` to the deploy rule. Without

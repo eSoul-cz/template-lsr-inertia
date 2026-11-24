@@ -1,6 +1,6 @@
 ## Commit convention
 
-Use the `gitmoji-commit` skill for normal agent-authored commits.
+Commit messages are English and describe what the commit does (required). This project uses the recommended Gitmoji format below; a developer MAY use their own commit standard, and the agents of a developer who has none use this one. Use the `gitmoji-commit` skill for agent-authored commits in this format.
 
 ```text
 :sparkles: [checkout] Add delivery selection
@@ -8,7 +8,7 @@ Use the `gitmoji-commit` skill for normal agent-authored commits.
 optional explanatory details
 ```
 
-Use one Gitmoji shortcode per commit and split commits by intention. Context is optional. The message is imperative and starts with an uppercase letter. Keep the complete subject line at 72 characters or fewer when practical.
+In the Gitmoji format use one shortcode per commit and split commits by intention. Context is optional. The message is imperative and starts with an uppercase letter. Keep the complete subject line at 72 characters or fewer when practical.
 
 ## Project profile
 

@@ -73,6 +73,13 @@ Application code is grouped by **technical layer** under `src/` (PSR-4 namespace
 - `php bin/console app:install --fresh` drops all tables. Run it only on a disposable database, never on a shared, staging or production one.
 - After a migration change, install into a disposable database and inspect the resulting columns, indexes and foreign keys; a successful command does not prove the schema is right.
 
+### Queries that stay correct on real data
+
+- Every sorted or paginated list ends its ordering with a unique key (the primary key) and decides where `NULL` values sort. Without the tiebreaker pages overlap and skip rows, and the engines differ in where `NULL` sorts by default.
+- A join or a correlated subquery on a mapping table (codes to ids, external keys to records) MUST match at most one row per outer row: back it with a unique index. A MariaDB or MySQL `_ci` collation compares case and accents insensitively, so keys that differ only in case or accents collide; check the collation of a text key.
+- A count reported back (imported, updated, skipped) comes from the rows the statement affected, not from a total computed beforehand.
+- Check-then-act on shared state uses a conditional `UPDATE`, a unique constraint or a lock, never read, decide and write back unguarded.
+
 ## Caching
 
 - Cache storage is file-based (`lsr/caching`, `temp/`) by default. A Valkey cache is a project choice: the Redis-compatible `RedisStorage` talks to the stack's own Valkey service (`REDIS_HOST=valkey`, [deployment.md](deployment.md#cache)). Configure it explicitly as a storage service, never assume it.

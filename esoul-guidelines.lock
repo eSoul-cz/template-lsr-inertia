@@ -1,6 +1,6 @@
 {
     "schema_version": 1,
-    "package_version": "v0.3.5",
+    "package_version": "v0.4.0",
     "layers": [
         "general",
         "framework/lsr",
@@ -15,16 +15,16 @@
         },
         "docs/project_guidelines/architecture.md": {
             "block": "architecture",
-            "sha256": "ffffc44342471bfd5c6f5c3b0bcf4182d5280407bd0b3203cda72db3e8816f40",
+            "sha256": "58c64809ff0de396f037090bc3707af1f005c15e9b44ff8ecacc6373bbbfbcbe",
             "sources": {
-                "framework/lsr/architecture.md": "173b9742157d274439936e4e05256e36afa4624f9a2047e5a0c67e35825289f2"
+                "framework/lsr/architecture.md": "9ef1060ed16dcbf60fcac3c581568b173a3aefa6f39b57b56e5f3bf863558f2f"
             }
         },
         "docs/project_guidelines/code-review.md": {
             "block": "code-review",
-            "sha256": "7999bc7f564695d877dd5c4a23f1ddde34b09479a5d7b0763e73c18e8a86ca1b",
+            "sha256": "ab2d7fc84ab2884dbc9106ca297b7cc2c7138042bd64d5013a1ffda3092f7395",
             "sources": {
-                "general/code-review.md": "b62bc2a89cb5e421ab8aa361ace6359d390acd30f61b257d9ddc67c8d7aa7d56"
+                "general/code-review.md": "45ef58cb71107ea80c6e9781c3f42b74044c997aa9a839f299de0aca3d5ac1df"
             }
         },
         "docs/project_guidelines/dependencies.md": {
@@ -44,9 +44,9 @@
         },
         "docs/project_guidelines/documentation.md": {
             "block": "documentation",
-            "sha256": "704d6286dbcb2f8b1b7203c67cec6aa0c0bde7c17f96923ee821eb44e8bac1aa",
+            "sha256": "491c4e986dbdb4c832c05b710e6a21dda2c316b2c5caa1c4fc4187d213260e5f",
             "sources": {
-                "general/documentation.md": "4748f9bca548a69d8c4e3cc0150160fe76aebaf0c7212ee2b095f8ed00083a50"
+                "general/documentation.md": "b327376cee5ebd55748710d5fb828cc12d85f15210a8e1837f5a817c32a12e67"
             }
         },
         "docs/project_guidelines/domain.md": {
@@ -58,10 +58,10 @@
         },
         "docs/project_guidelines/frontend.md": {
             "block": "frontend",
-            "sha256": "7d8c8cbdeb21866291ef754bead6e0e5785757e10a238911d3b33bd135b62beb",
+            "sha256": "ea451ed8b0623fbe6f42e4f5fe66badf81208a1001c1f32f7f8cf6e0623d5fc0",
             "sources": {
                 "framework/lsr/frontend.md": "785a48a0ab5e9c515ee2d47cac139771da9d1e6995e485f2c45e5a28cceed8b6",
-                "package/inertia-vue/frontend.md": "225c575a232b505951aaace0e95a55805ba68b26719518cfdeabb35a7427d472"
+                "package/inertia-vue/frontend.md": "1c2bb386b654ef7d0e36314ae91f9774830b5c8f0255f70c5bb0d61e10129b54"
             }
         },
         "docs/project_guidelines/index.md": {
@@ -101,9 +101,9 @@
         },
         "docs/project_guidelines/workflow.md": {
             "block": "workflow",
-            "sha256": "6e185ce2085479244a32db66156abc059f34d31abab9b554b3fe4f7e3d2a9d95",
+            "sha256": "2dbb1df30bb9623b1825442a802ac1bf77985607570c7de5b2d2adf98267a9a0",
             "sources": {
-                "general/workflow.md": "e016a9aab1d0120ab4276e87314d1fd5828463278e0111b9f8497d6fefd23584"
+                "general/workflow.md": "54c53960bb5541a61f27c8ef951315843251ad410ac0768f7bff3025d11f42b5"
             }
         }
     }

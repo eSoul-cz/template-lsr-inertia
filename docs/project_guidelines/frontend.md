@@ -142,6 +142,10 @@ components/ProductSummary                          several branches
 - A child component MUST NOT call `usePage()` for data that can be passed explicitly through props.
 - Reactive or lifecycle-aware behaviour that more than one component needs is a composable named `useXxx.ts`. Stateless helpers are plain functions in a module named by its purpose.
 
+### Composables with module-level state
+
+- A composable that holds state at module level (outside the function, shared by every caller) says so in a comment on that state, and its tests reset it between tests. Otherwise state leaks from one test, and from one page to the next.
+
 ### Single-file components
 
 - Order: `<script setup lang="ts">`, then `<template>`, then optional `<style scoped>`.

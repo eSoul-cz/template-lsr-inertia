@@ -2,6 +2,9 @@
   $schema: 'https://docs.renovatebot.com/renovate-schema.json',
   extends: ['config:recommended', ':dependencyDashboard'],
   timezone: 'Europe/Prague',
+  // Dependency pull requests and their squash commits use the recommended Gitmoji format, e.g. ":arrow_up: [deps] Update dependency x to v2".
+  commitMessagePrefix: ':arrow_up: [deps]',
+  semanticCommits: 'disabled',
   // Batch update PRs once a week.
   schedule: ['* 0-5 * * 1'],
   packageRules: [

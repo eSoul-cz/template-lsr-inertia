@@ -4,10 +4,10 @@ Application on the LSR framework with RoadRunner, Latte, Inertia 3 (Vue 3), Vite
 
 ## Getting started
 
-1. Clone: `git clone git@github.com:eSoul-cz/<repository>.git`.
-2. Agent skills: `npx skills experimental_install` restores the set pinned in `skills-lock.json`. Optional personal layers (installed once per user, not part of the project): `npx @esoul-cz/skills install project helpers`; `npx @esoul-cz/skills layers` lists them.
+1. Clone: `git clone git@github.com:eSoul-cz/<repository>.git`, then `git lfs pull` where the project keeps `assets/` or `.pen` files in LFS.
+2. Agent skills: the project commits `skills-lock.json` and `.agents/skills/`, so they come with the clone; `npx skills experimental_install` restores or refreshes them. Optional personal layers (installed once per user, not part of the project): `npx @esoul-cz/skills install project helpers`; `npx @esoul-cz/skills layers` lists them.
 3. Local environment: [Setup](#setup) (`docker compose up --build`).
-4. Access, asked from the project lead or devops: the Freelo project (`CONTEXT.md` › Freelo), the Jenkins job (its `Jenkins` check runs on every pull request) and the project's vault in 1Password (secrets and staging logins live there, never in Git). Then read `AGENTS.md` and `CONTEXT.md`.
+4. Access, asked from the project lead or devops: the GitHub repository, the Freelo project (`CONTEXT.md` › Freelo), the Jenkins job (its `Jenkins` check runs on every pull request), Komodo (read-only, for the stack and its logs) and the project's vault in 1Password (secrets and staging logins live there, never in Git). Then read `AGENTS.md` and `CONTEXT.md`.
 
 ## Requirements
 

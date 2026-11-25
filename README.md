@@ -55,6 +55,10 @@ APP_IMAGE=lsr-app docker compose -f docker-compose.ci.yml --profile verification
 docker compose -f docker-compose.ci.yml down -v
 ```
 
+## Production start
+
+`docker/startProd.sh` runs `/prepare-runtime` (writable directories, the generated-cache cleanup, the ORM, Latte and route caches and `php bin/console app:install`) and then `rr serve`. `app:install` applies the schema forward-only (never `--fresh`) and seeds nothing. A failure does not stop the container: `app:install failed` is written to standard error and RoadRunner starts anyway, so whoever monitors the deployment reads the log and decides (fix forward or roll back). The script never runs a seeder; a seeder is run by hand in the container. Heavy data tasks (recalculations, syncs, imports) run in the background after the server starts, never in `/prepare-runtime`.
+
 ## Persistent paths
 
 In a deployed stack these are bind-mounted from the stack's run directory, next to `.env`, `services.local.neon` and `.rr.yaml`; the container filesystem is disposable and the infrastructure backups cover the run directory.

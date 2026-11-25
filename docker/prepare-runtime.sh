@@ -19,5 +19,9 @@ php bin/console latte:cache:clean
 php bin/console routes:cache:clean
 php bin/console routes:cache:compile
 
-# Create/update the database schema (config/migrations).
-php bin/console app:install
+# Create/update the database schema (config/migrations): forward-only, never --fresh, and it seeds nothing.
+# A failure does not block the deployment: it is logged loudly and the container starts anyway, so whoever
+# monitors the deployment reads it and decides (fix forward or roll back).
+if ! php bin/console app:install; then
+  echo 'app:install failed: the container starts anyway and the schema may be behind the code. Read the output above.' >&2
+fi

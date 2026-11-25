@@ -1,6 +1,6 @@
 {
     "schema_version": 1,
-    "package_version": "v0.5.4",
+    "package_version": "v0.5.5",
     "layers": [
         "general",
         "framework/lsr",
@@ -36,10 +36,10 @@
         },
         "docs/project_guidelines/deployment.md": {
             "block": "deployment",
-            "sha256": "3f7272886d76b4377010c23840737d18e5999d0d3b7107ff462654e342494cc6",
+            "sha256": "ca1bb416fb4f351666a4007bb010e7f471c778cbfa59111fbac5470bf4c99ff0",
             "sources": {
-                "general/deployment.md": "e31264a8b5f5e4e0e0fd014d155879e1b6403cd90ff3881c17847d6289a52ad2",
-                "framework/lsr/deployment.md": "1f8f459593ddbb1924616f135420d7a208ca50f51d380ed0d150a32c845a9317"
+                "general/deployment.md": "6a0cc72512f2e7e0796582d15b7d1c91c43cf39ce52a93e8107c857ae49e5635",
+                "framework/lsr/deployment.md": "748f3d655e5545d6d58408a526661588e5d7abf17bd1efa4b7470de7c4fe0502"
             }
         },
         "docs/project_guidelines/documentation.md": {

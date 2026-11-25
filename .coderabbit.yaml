@@ -3,6 +3,15 @@
 inheritance: true
 reviews:
   path_filters:
+    # Agent skills and agent tooling, installed and refreshed by `npx skills` and Laravel Boost.
     - '!.agents/**'
     - '!.ai/**'
     - '!.claude/**'
+    - '!.codex/**'
+    - '!.cursor/**'
+    - '!.junie/**'
+    - '!skills-lock.json'
+    # Template record of esoul-project-update.
+    - '!.esoul/**'
+    # Lock of the rendered guidelines, written by `esoul-guidelines sync`.
+    - '!esoul-guidelines.lock'

@@ -70,7 +70,7 @@ How a change travels from a prepared issue to a merged pull request. The tasking
 4. Format before each commit; run tests and static analysis once on the code that will be pushed (the stack's tools guideline, `tools.md`).
 5. Commit by intention (the `gitmoji-commit` skill writes the recommended format) and push.
 6. Open the pull request from the template and work through CI and review until it is approved.
-7. The author merges (an agent only with the owner's explicit authorisation recorded in the pull request). A merge to a branch with a deploy rule starts a deployment: the author monitors a production deployment ([Monitoring a deployment](deployment.md#monitoring-a-deployment)). The task is then moved to its finished state and the work is reported.
+7. The author merges (an agent only with the owner's explicit authorisation recorded in the pull request). A merge to a branch with a deploy rule starts a deployment, unless it changes only documentation (the pipeline then builds and deploys nothing): the author monitors a production deployment ([Monitoring a deployment](deployment.md#monitoring-a-deployment)). The task is then moved to its finished state and the work is reported.
 
 ## Fixing a bug
 

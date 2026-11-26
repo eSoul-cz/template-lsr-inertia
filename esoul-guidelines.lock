@@ -1,6 +1,6 @@
 {
     "schema_version": 1,
-    "package_version": "v0.6.1",
+    "package_version": "v0.6.2",
     "layers": [
         "general",
         "framework/lsr",
@@ -36,10 +36,10 @@
         },
         "docs/project_guidelines/deployment.md": {
             "block": "deployment",
-            "sha256": "ca1bb416fb4f351666a4007bb010e7f471c778cbfa59111fbac5470bf4c99ff0",
+            "sha256": "2ccd5525c606ed5fccb6b44b2d01b55487c630f85f61aa979e26add0340bb854",
             "sources": {
                 "general/deployment.md": "6a0cc72512f2e7e0796582d15b7d1c91c43cf39ce52a93e8107c857ae49e5635",
-                "framework/lsr/deployment.md": "748f3d655e5545d6d58408a526661588e5d7abf17bd1efa4b7470de7c4fe0502"
+                "framework/lsr/deployment.md": "f375ca1f8c2a1c0f6bf58851703d6f3787113411792275369408d6a0e10318c9"
             }
         },
         "docs/project_guidelines/documentation.md": {
@@ -101,9 +101,9 @@
         },
         "docs/project_guidelines/workflow.md": {
             "block": "workflow",
-            "sha256": "d7514ba8df2c01f5265aa167f07a9806e9927725d1856115a03e2fca9352c36b",
+            "sha256": "9ae21e4959666b9bc13d653ac1668d9f4833e131b34e501789c510ac9f5c3c30",
             "sources": {
-                "general/workflow.md": "5cc2d251d9b23f8535c80079ee005286b480e3cf66ac6724b4b29e0005af32f9"
+                "general/workflow.md": "c15581d8178f94efec3749f12f97f13cc966c29ed2c4177d1de6b57999f73188"
             }
         }
     }

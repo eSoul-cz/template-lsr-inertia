@@ -76,6 +76,12 @@ In a deployed stack these are bind-mounted from the stack's run directory, next 
 
 The application clock is UTC: PHP runs on `UTC` (`APP_TIMEZONE` in `include/constants.php`) and the database session is set to `+00:00` on every connection (`config/di/environment.php`). The business time zone is named in `CONTEXT.md` and applied only where a date is shown or a calendar boundary is cut.
 
+## Addons
+
+The addons this project took are listed in `.esoul/template.json`; their documentation is linked below.
+
+<!-- @esoul-slot addons -->
+
 ## Troubleshooting
 
 - `ERR_PNPM_IGNORED_BUILDS` on install: a new dependency has an install script; review it and list it in `allowBuilds` of `pnpm-workspace.yaml` (`pnpm approve-builds`).

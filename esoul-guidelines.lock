@@ -1,6 +1,6 @@
 {
     "schema_version": 2,
-    "package_version": "v0.7.0",
+    "package_version": "v0.8.0",
     "layers": [
         "general",
         "framework/lsr",
@@ -36,9 +36,9 @@
         },
         "docs/project_guidelines/deployment.md": {
             "block": "deployment",
-            "sha256": "2ccd5525c606ed5fccb6b44b2d01b55487c630f85f61aa979e26add0340bb854",
+            "sha256": "0a831dcf5fefeb7c335247ea3d272b70f5bee391f7f388d83d0314e9ca4bfdba",
             "sources": {
-                "general/deployment.md": "6a0cc72512f2e7e0796582d15b7d1c91c43cf39ce52a93e8107c857ae49e5635",
+                "general/deployment.md": "a3854c3907b94602ea4891198084f21903f2bd7ff7b62152bde36d5527db108a",
                 "framework/lsr/deployment.md": "f375ca1f8c2a1c0f6bf58851703d6f3787113411792275369408d6a0e10318c9"
             }
         },
@@ -77,9 +77,9 @@
         },
         "docs/project_guidelines/security-and-data.md": {
             "block": "security-and-data",
-            "sha256": "d9ad76bd229196158b18303583fc3f358391b390394b777ef80766b58b09b788",
+            "sha256": "1fe6d50217e9de743a4132f9c1b8810265d1c998eb244c7b59e383227603d9d8",
             "sources": {
-                "general/security-and-data.md": "08c938cbe9006bc1204b0fd9b06a4c4ff912e09849ba28392695360025d696c3"
+                "general/security-and-data.md": "47e7dfb6021cdebf97ecc04990c5a65680046493734fe83e51e836518764e083"
             }
         },
         "docs/project_guidelines/testing.md": {

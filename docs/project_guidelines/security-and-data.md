@@ -59,7 +59,7 @@ Every protected surface is tested for the allowed and the refused role, and a te
 - Applications are served over HTTPS only. Session cookies are `Secure`, `HttpOnly` and `SameSite=Lax` or stricter.
 - The session identifier is regenerated on login; logout invalidates it; a password change ends the user's other sessions; deactivating a user ends their sessions.
 - Login and password reset are rate limited per account and per client address. A reset or login response does not reveal whether an account exists.
-- No seeder creates an account with credentials outside local development. The first account of an environment is created interactively in its container and its password is kept in 1Password.
+- No seeder creates an account with credentials outside local development, with one exception: on an instance that holds only invented data, a demo seeder MAY create demo accounts whose passwords come from the stack's secrets, never from code. The first account of an environment is created interactively in its container and its password is kept in 1Password.
 - Passwords are hashed with the framework's password hashing and are never logged, exported, put in an error report or sent by e-mail. A password reset uses a signed link that expires.
 
 > Local additions go below this managed block. Content outside the block is preserved when the guidelines are synced.

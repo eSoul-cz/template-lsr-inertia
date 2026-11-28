@@ -1,6 +1,6 @@
 {
-    "schema_version": 1,
-    "package_version": "v0.6.2",
+    "schema_version": 2,
+    "package_version": "v0.7.0",
     "layers": [
         "general",
         "framework/lsr",
